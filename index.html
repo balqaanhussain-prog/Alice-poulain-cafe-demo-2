@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alice Poulain Café | Parisian Bakery & Café</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..700;1,400..700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #fcfbf7;
+            --card-bg: #ffffff;
+            --text-color: #2c2a29;
+            --accent-color: #8b3a2b; /* Warm Wine/Terracotta */
+            --muted-color: #7d7770;
+            --border-color: #e6e2d8;
+            --font-serif: 'Playfair Display', serif;
+            --font-sans: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: var(--font-sans);
+            line-height: 1.6;
+        }
+
+        /* Header / Navbar */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 8%;
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            background: var(--bg-color);
+            z-index: 1000;
+        }
+
+        .logo {
+            font-family: var(--font-serif);
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent-color);
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-color);
+            margin-left: 1.8rem;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        nav a:hover {
+            color: var(--accent-color);
+        }
+
+        .nav-btn {
+            background-color: var(--accent-color);
+            color: #fff !important;
+            padding: 0.5rem 1.2rem;
+            border-radius: 4px;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 1rem;
+            background: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)), url('https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=1600&q=80') no-repeat center center/cover;
+            color: #fff;
+        }
+
+        .hero-content h1 {
+            font-family: var(--font-serif);
+            font-size: clamp(2.5rem, 5vw, 4.2rem);
+            margin-bottom: 1rem;
+            max-width: 850px;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: #fff;
+            padding: 0.8rem 2rem;
+            text-decoration: none;
+            font-weight: 500;
+            border-radius: 4px;
+            border: none;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .btn-secondary {
+            background-color: #fff;
+            color: var(--text-color);
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+        }
+
+        /* Common Section Layout */
+        section {
+            padding: 5rem 8%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-family: var(--font-serif);
+            font-size: 2.5rem;
+            color: var(--accent-color);
+        }
+
+        .section-title p {
+            color: var(--muted-color);
+            margin-top: 0.5rem;
+        }
+
+        /* About Section */
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-img img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+        }
+
+        /* Menu Section */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .menu-card {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        .menu-card h3 {
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent-color);
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 0.5rem;
+        }
+
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1.2rem;
+        }
+
+        .menu-item-name {
+            font-weight: 600;
+        }
+
+        .menu-item-desc {
+            font-size: 0.85rem;
+            color: var(--muted-color);
+        }
+
+        .menu-price {
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+
+        /* Reservation Form Section */
+        .reservation {
+            background-color: #f4efe6;
+            border-radius: 8px;
+        }
+
+        .form-grid {
+            max-width: 600px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .form-group-full {
+            grid-column: span 2;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-family: var(--font-sans);
+            font-size: 1rem;
+        }
+
+        /* Reviews Section */
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .review-card {
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            font-style: italic;
+        }
+
+        .review-author {
+            margin-top: 1rem;
+            font-style: normal;
+            font-weight: 600;
+            color: var(--accent-color);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--text-color);
+            color: #fff;
+            padding: 3rem 8% 1.5rem 8%;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-col h4 {
+            font-family: var(--font-serif);
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: #e6e2d8;
+        }
+
+        .footer-col p, .footer-col a {
+            color: #b0aaa0;
+            text-decoration: none;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .copyright {
+            text-align: center;
+            border-top: 1px solid #444;
+            padding-top: 1.5rem;
+            font-size: 0.85rem;
+            color: #888;
+        }
+
+        @media (max-width: 768px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            .form-group-full {
+                grid-column: span 1;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. Header / Navigation Bar -->
+    <header>
+        <div class="logo">Alice Poulain</div>
+        <nav>
+            <a href="#about">About</a>
+            <a href="#menu">Menu</a>
+            <a href="#reservation">Book a Table</a>
+            <a href="#reviews">Reviews</a>
+            <a href="#reservation" class="nav-btn">Reserve Now</a>
+        </nav>
+    </header>
+
+    <!-- 2. Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Where Parisian Charm Meets Texas Warmth</h1>
+            <p>Fresh artisanal pastries, specialty coffee, and authentic French recipes prepared daily.</p>
+            <div class="btn-group">
+                <a href="#menu" class="btn btn-secondary">View Menu</a>
+                <a href="#reservation" class="btn">Book Table</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. About Section -->
+    <section id="about">
+        <div class="about-grid">
+            <div class="about-text">
+                <div class="section-title" style="text-align: left;">
+                    <h2>Our Story</h2>
+                    <p>Tradition in every single bite</p>
+                </div>
+                <p>Alice Poulain Café brings the classic French bakery atmosphere directly to you. Every cake, croissant, and quiche is crafted with classical techniques and inspired by timeless Parisian family recipes.</p>
+                <br>
+                <p>Whether you're stopping by for a quick morning espresso or enjoying a slow lunch, we invite you to experience the authentic taste of Paris.</p>
+            </div>
+            <div class="about-img">
+                <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=800&q=80" alt="Fresh Pastries">
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Menu Section -->
+    <section id="menu" style="background-color: #f8f6f0;">
+        <div class="section-title">
+            <h2>La Carte / Our Menu</h2>
+            <p>Made fresh every morning using traditional ingredients</p>
+        </div>
+        <div class="menu-grid">
+            <!-- Pâtisserie -->
+            <div class="menu-card">
+                <h3>Bakery & Pastries</h3>
+                <div class="menu-item">
+                    <div>
+                        <div class="menu-item-name">Butter Croissant</div>
+                        <div class="menu-item-desc">Classic flaky golden French croissant</div>
+                    </div>
+                    <div class="menu-price">$4.00</div>
+                </div>
+                <div class="menu-item">
+                    <div>
+                        <div class="menu-item-name">Pain au Chocolat</div>
+                        <div class="menu-item-desc">Pastry filled with dark French chocolate</div>
+                    </div>
+                    <div class="menu-price">$4.50</div>
+                </div>
+                <div class="menu-item">
+                    <div>
+                        <div class="menu-item-name">Fresh Madeleines (3 pcs)</div>
+                        <div class="menu-item-desc">Traditional shell-shaped mini sponge cakes</div>
+                    </div>
+                    <div class="menu-price">$3.50</div>
+                </div>
+            </div>
+
+            <!-- Lunch -->
+            <div class="menu-card">
+                <h3>Savory & Lunch</h3>
+                <div class="menu-item">
+                    <div>
+                        <div class="menu-item-name">Quiche Lorraine</div>
+                        <div class="menu-item-desc">Bacon, gruyère cheese & egg tart</div>
+                    </div>
+                    <div class="menu-price">$10.00</div>
+                </div>
+                <div class="menu-item">
+                    <div>
+                        <div class="menu-item-name">Croque Monsieur</div>
+                        <div class="menu-item-desc">Ham, béchamel & toasted cheese sandwich</div>
+                    </div>
+                    <div class="menu-price">$14.50</div>
+                </div>
+                <div class="menu-item">
+                    <div>
+                        <div class="menu-item-name">French Onion Soup</div>
+                        <div class="menu-item-desc">Slow-cooked onion broth with melted cheese</div>
+                    </div>
+                    <div class="menu-price">$9.00</div>
+                </div>
+            </div>
+
+            <!-- Beverages -->
+            <div class="menu-card">
+                <h3>Coffee & Drinks</h3>
+                <div class="menu-item">
+                    <div>
+                        <div class="menu-item-name">Café au Lait</div>
+                        <div class="menu-item-desc">Dark roast espresso with steamed milk</div>
+                    </div>
+                    <div class="menu-price">$4.50</div>
+                </div>
+                <div class="menu-item">
+                    <div>
+                        <div class="menu-item-name">Parisian Hot Chocolate</div>
+                        <div class="menu-item-desc">Rich, thick melted dark chocolate drink</div>
+                    </div>
+                    <div class="menu-price">$5.50</div>
+                </div>
+                <div class="menu-item">
+                    <div>
+                        <div class="menu-item-name">Fresh Sparkling Lemonade</div>
+                        <div class="menu-item-desc">House-made with fresh lemon & mint</div>
+                    </div>
+                    <div class="menu-price">$4.00</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. Online Table Reservation Section -->
+    <section id="reservation" class="reservation">
+        <div class="section-title">
+            <h2>Reserve a Table</h2>
+            <p>Book your spot for breakfast, brunch, or tea time</p>
+        </div>
+        <form class="form-grid" onsubmit="alert('Reservation request submitted successfully!'); return false;">
+            <div>
+                <input type="text" placeholder="Your Name" required>
+            </div>
+            <div>
+                <input type="email" placeholder="Your Email" required>
+            </div>
+            <div>
+                <input type="date" required>
+            </div>
+            <div>
+                <select required>
+                    <option value="">Select Time</option>
+                    <option>08:00 AM</option>
+                    <option>10:00 AM</option>
+                    <option>12:00 PM</option>
+                    <option>02:00 PM</option>
+                </select>
+            </div>
+            <div class="form-group-full">
+                <select required>
+                    <option value="">Number of Guests</option>
+                    <option>1 Person</option>
+                    <option>2 People</option>
+                    <option>3–4 People</option>
+                    <option>5+ People</option>
+                </select>
+            </div>
+            <div class="form-group-full">
+                <button type="submit" class="btn" style="width: 100%;">Confirm Reservation</button>
+            </div>
+        </form>
+    </section>
+
+    <!-- 6. Customer Reviews Section -->
+    <section id="reviews">
+        <div class="section-title">
+            <h2>What Our Guests Say</h2>
+            <p>Loved by locals and travelers alike</p>
+        </div>
+        <div class="reviews-grid">
+            <div class="review-card">
+                "The Pain au Chocolat reminds me exactly of the bakeries in Paris! A true gem in the neighborhood."
+                <div class="review-author">— Sarah M.</div>
+            </div>
+            <div class="review-card">
+                "Best coffee and quiet morning vibes. The staff is warm and the madeleines are served fresh and hot."
+                <div class="review-author">— David K.</div>
+            </div>
+            <div class="review-card">
+                "Wonderful brunch spot. The Quiche Lorraine is perfectly seasoned and melted in my mouth."
+                <div class="review-author">— Elena R.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. Footer & Contact -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>Alice Poulain Café</h4>
+                <p>Bringing authentic French taste, bakery craftsmanship, and love to your table.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Hours</h4>
+                <p>Tue – Fri: 7:30 AM – 4:00 PM</p>
+                <p>Sat – Sun: 8:00 AM – 3:00 PM</p>
+                <p>Monday: Closed</p>
+            </div>
+            <div class="footer-col">
+                <h4>Contact & Location</h4>
+                <p>2214 S 1st St, Austin, TX</p>
+                <p>Phone: (512) 555-0199</p>
+                <p>Email: hello@alicepoulaincafe.com</p>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2026 Alice Poulain Café. All rights reserved.
+        </div>
+    </footer>
+
+</body>
+      </html>
